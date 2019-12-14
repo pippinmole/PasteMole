@@ -1,0 +1,122 @@
+<html>
+  <head>
+    <title>Home | PasteMole</title>
+
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <script src="client.js"></script>
+
+    <!-- ace.js libs -->
+    <script src="ace/ace.js" type="text/javascript" charset="utf-8"></script>
+
+  </head>
+
+  <body onload="OnLoad()">
+
+      <h1 style="font-size: 75px">
+        PasteMole
+      </h1>
+
+      <!--
+      Links and refs
+      -->
+      <div class="textContainer_center">
+
+        <h1>
+          Links
+        </h1>
+
+        <p>
+          var homepage => <a href="index.html">new Homepage()</a>
+        </p>
+      </div>
+
+      <div class="textContainer_center">
+        <h1 class="header_p">
+          An online code-pasting service.
+        </h1>
+
+        <p>
+          Paste your code in the text field, and hit 'Submit'.
+        </p>
+
+        <!--
+        Main code pasting goes here
+        -->
+
+        <button class="submitCode_button" onclick="SubmitCode()"> Submit </button>
+
+        <select class="codeTypeSelector" onchange="OnCodeTypeSelectorChanged()">
+          <option value="plain_text">Plain-Text</option>
+          <option value="abap">ABAP</option>
+          <option value="abc">ABC</option>
+          <option value="actionscript">ActionScript</option>
+          <option value="ada">ADA</option>
+          <option value="apache_conf">Apache_Conf</option>
+          <option value="apex">Apex</option>
+          <option value="applescript">AppleScript</option>
+          <option value="aql">AQL</option>
+          <option value="asciidoc">ASCIIDoc</option>
+          <option value="asl">ASL</option>
+          <option value="assembly_x86">Assembly_x86</option>
+          <option value="autohotkey">AutoHotkey</option>
+          <option value="batchfile">BatchFile</option>
+          <option value="bro">BRO</option>
+          <option value="c_cpp">C++</option>
+          <option value="c9search">C9Search</option>
+          <option value="cirru">Cirru</option>
+          <option value="clojure">Clojure</option>
+          <option value="cobol">Cobol</option>
+          <option value="coffee">Coffee</option>
+          <option value="coldfusion">ColdFusion</option>
+          <option value="crystal">Crystal</option>
+          <option value="csharp">C#</option>
+          <option value="csound_document">CSound_Document</option>
+          <option value="csound_orchestra">CSound_Orchestra</option>
+          <option value="csound_score">CSound_Score</option>
+          <option value="csp">CSP</option>
+          <option value="css">CSS</option>
+          <option value="curly">Curly</option>
+          <option value="d">D</option>
+          <option value="dart">Dart</option>
+          <option value="diff">Diff</option>
+          <option value="django">DJango</option>
+          <option value="dockerfile">DockerFile</option>
+          <option value="dot">Dot</option>
+          <option value="drools">Drools</option>
+          <option value="edifact">Edifact</option>
+          <option value="eiffel">Eiffel</option>
+          <option value="ejs">EJS</option>
+          <option value="elixir">Elixir</option>
+          <option value="elm">ELM</option>
+          <option value="erlang">Erlang</option>
+          <option value="forth">Forth</option>
+          <option value="fortran">Fortran</option>
+          <option value="fsharp">F#</option>
+          <option value="fsl">FSL</option>
+          <option value="ftl">FTL</option>
+          <option value="gcode">GCode</option>
+          <option value="gherkin">Gherkin</option>
+          <option value="gitignore">Gitignore</option>
+          <option value="glsl">GLSL</option>
+          <option value="gobstones">GobStones</option>
+          <option value="golang">GO Lang</option>
+          <option value="graphqlschema">GraphQLSchema</option>
+          <option value="groovy">Groovy</option>
+          <option value="haml">HAML</option>
+          <option value="handlebars">HandleBars</option>
+          <option value="haskell">Haskell</option>
+          <option value="haskell_cabal">Haskell Cabal</option>
+
+        </select>
+
+        <!--<button class="submitCode_button" onclick="Highlight()"> Highlight </button>-->
+
+        <div id="editor" class="codePastingArea"> </div>
+
+        </textarea>
+
+      </div>
+  </body>
+
+<html>

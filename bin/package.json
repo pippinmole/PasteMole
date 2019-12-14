@@ -1,0 +1,17 @@
+{
+  "name": "pastemole",
+  "version": "1.0.0",
+  "description": "A script pasting service",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Jonathan Ruffles",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pug": "^2.0.4",
+    "sqlite3": "^4.1.1"
+  }
+}

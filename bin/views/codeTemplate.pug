@@ -1,0 +1,53 @@
+head
+  meta(charset='utf-8')
+
+  title Paste | PasteMole
+  link(rel='stylesheet' type='text/css' href='../style.css')
+  script(src='http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js')
+  script(src='../client.js')
+  // ace.js libs
+  script(src='../ace/ace.js' type='text/javascript' charset='utf-8')
+  script.
+    window.onload = function() {
+      OnLoad();
+
+      console.log(document.getElementById('startingCode').innerHTML);
+
+      let startingCode = document.getElementById('startingCode').innerHTML;
+      let startingCodeType = document.getElementById('startingCodeType').innerHTML;
+      editor.setValue(startingCode);
+      editor.session.setMode("ace/mode/" + startingCodeType);
+
+      editor.setOptions({
+        readOnly: true
+      });
+    }
+h1(style='font-size: 75px')
+  | PasteMole
+.textContainer_center
+  h1.header_p
+    | An online code-pasting service.
+  p
+    | Paste your code in the text field, and hit &apos;Submit&apos;.
+  //
+    Main code pasting goes here
+  a(href='index.html')
+    button.submitCode_button  Make new Paste
+  // <button class="submitCode_button" onclick="Highlight()"> Highlight </button>
+  #editor.codePastingArea
+
+.textContainer_center
+  footer
+    p
+      span(style='font-weight: bold;') Author:
+      |  Jonathan Ruffles
+    p
+      span(style='font-weight: bold;') Github:
+      a(href='https://github.com/pippinmole') https://github.com/pippinmole
+    p
+      span(style='font-weight: bold;') E-Mail:
+      a(href='mailto:jonathan@ruffles.dev') jonathan@ruffles.dev
+
+
+  p#startingCode= paste
+  p#startingCodeType= pasteType
