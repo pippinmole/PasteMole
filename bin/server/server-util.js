@@ -9,12 +9,16 @@ module.exports = {
 
   GenerateNewPaste: function(paste, response) {
 
+    const pasteName = paste.pasteName;
+    const pasteDescription = paste.pasteDescription;
     const code = paste.code;
     const codeType = paste.codeType;
 
     // Create data object
     let data = {
       url: utilities.GenerateRandomString(URL_LENGTH),
+      pasteName: pasteName,
+      pasteDescription: pasteDescription,
       code: code,
       codeType: codeType
     }

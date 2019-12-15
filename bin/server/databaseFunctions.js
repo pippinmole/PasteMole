@@ -32,12 +32,14 @@ module.exports = {
   //
   WriteToDatabase: function(data) {
 
-    let sql_entry = "INSERT INTO codeBlocks (url, code, codeType) VALUES ($url, $code, $codeType)";
+    let sql_entry = "INSERT INTO codeBlocks (url, name, description, code, codeType) VALUES ($url, $name, $description, $code, $codeType)";
 
     let db = OpenDatabase();
 
     db.run(sql_entry, {
       $url: data.url,
+      $name: data.pasteName,
+      $description: data.pasteDescription,
       $code: data.code,
       $codeType: data.codeType
     });
@@ -48,7 +50,7 @@ module.exports = {
   CreateDatabase: function() {
     console.log("Creating the database schema");
 
-    sql_entry = "CREATE TABLE IF NOT EXISTS codeBlocks (url TEXT PRIMARY KEY, code TEXT, codeType TEXT)";
+    sql_entry = "CREATE TABLE IF NOT EXISTS codeBlocks (url TEXT PRIMARY KEY, name TEXT, description TEXT, code TEXT, codeType TEXT)";
 
     let db = OpenDatabase();
     db.run(sql_entry);

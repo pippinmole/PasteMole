@@ -57,7 +57,9 @@ app.get("/p/:id", (request, response) => {
 
       // Send to code template (with paste object)
       const _render = {
-        paste: paste.code,
+        pasteName: paste.name,
+        pasteDescription: paste.description,
+        pasteContents: paste.code,
         pasteType: paste.codeType
       }
 

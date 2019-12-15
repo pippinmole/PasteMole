@@ -32,10 +32,13 @@ function SubmitCode() {
     return;
   }
 
-  var content = editor.getValue();
+  const _pasteName = $(".paste_name").val();
+  const _pasteDescription = $(".paste_description").val();
+  const _code = editor.getValue();
+  const _codeType = $(".codeTypeSelector").val();
 
   // Clean content of the codePastingArea
-  if(content == undefined || content == "") {
+  if(_code == undefined || _code == "") {
     console.log("You should enter something into the code block before sending it!");
     return;
   }
@@ -49,12 +52,11 @@ function SubmitCode() {
   //   codeType: "javascript"
   // }
   const data = {
-    code: content,
-    codeType: $(".codeTypeSelector").val()
+    pasteName: _pasteName,
+    pasteDescription: _pasteDescription,
+    code: _code,
+    codeType: _codeType
   };
-
-  console.log(data.code);
-  console.log(JSON.stringify(data));
 
   // Store the different sending options to the server
   const options = {
