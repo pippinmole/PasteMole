@@ -20,7 +20,7 @@ const pug = require("pug");
 app.set("view engine", "pug");
 
 // Start listening on PORT
-app.listen(2000, () => console.log("Listening on 2000"));
+app.listen(80, () => console.log("Listening on 80"));
 
 // Redirect incoming clients to default(index.html) inside 'client' folder
 app.use(express.static('./client'));

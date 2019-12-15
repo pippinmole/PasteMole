@@ -18,7 +18,7 @@ function OnLoad() {
   editor.setTheme("ace/theme/twilight");
 
   // Default the text area to empty string
-  editor.setValue($("#editor").val());
+  editor.setValue(decodeURI($("#editor").val()));
 
   // Set the mode of the current session
   // TODO: Move this to a function so that I can have a dropdown for all the different code modes
