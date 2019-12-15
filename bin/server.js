@@ -15,8 +15,6 @@ const serverutilities = require("./server/server-util.js");
 const database = require("./server/databaseFunctions.js");
 database.CreateDatabase();
 
-let x = 5;
-
 const pug = require("pug");
 
 app.set("view engine", "pug");
