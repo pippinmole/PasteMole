@@ -17,6 +17,8 @@ database.CreateDatabase();
 
 const pug = require("pug");
 
+let x = 5;
+
 app.set("view engine", "pug");
 
 // Start listening on PORT
