@@ -23,6 +23,8 @@ head
       editor.setValue(startingCode);
       editor.session.setMode("ace/mode/" + startingCodeType);
 
+
+
       editor.setOptions({
         readOnly: true
       });
@@ -40,6 +42,30 @@ h1(style='font-size: 75px')
     button.submitCode_button  Make new Paste
   // <button class="submitCode_button" onclick="Highlight()"> Highlight </button>
   #editor.codePastingArea
+
+  #pasteProperties
+    p#pasteProperties_p
+      | {
+      br
+      | &emsp;
+      span#pasteProperties_jsonHeader &quot;pasteName&quot;
+      | :
+      span#pasteProperties_jsonProperty &quot;#{pasteName}&quot;
+      | ,
+      br
+      | &emsp;
+      span#pasteProperties_jsonHeader &quot;pasteDescription&quot;
+      | :
+      span#pasteProperties_jsonProperty &quot;#{pasteDescription}&quot;
+      | ,
+      br
+      | &emsp;
+      span#pasteProperties_jsonHeader &quot;pasteType&quot;
+      | :
+      span#pasteProperties_jsonProperty &quot;#{pasteType}&quot;
+      br
+      |             }
+
 
 .textContainer_center
   footer

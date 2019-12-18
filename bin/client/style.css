@@ -114,3 +114,18 @@ footer p {
   color: white;
 
 }
+
+#pasteProperties {
+  background: #141414;
+  border-radius: 5px;
+
+  color: white;
+  font-family: Inconsolata, Monaco, Consolas, 'Courier New', Courier;
+}
+
+#pasteProperties_jsonHeader {
+  color: #b57e23;
+}
+#pasteProperties_jsonProperty {
+  color: #2aa197;
+}
