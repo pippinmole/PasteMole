@@ -130,3 +130,43 @@ footer p {
 #pasteProperties_jsonProperty {
   color: #2aa197;
 }
+
+#copyTextButton {
+  border-radius: 5px;
+  background-color: #00b300;
+
+  border: none;
+
+  width: 100%;
+  height: 2em;
+
+  margin-bottom: 10px;
+
+  opacity: 0.6;
+  transition: 0.3s;
+
+  font-weight: bold;
+}
+
+#copyTextButton:hover {
+  opacity: 1;
+}
+
+#subtitle_main {
+  text-align: center;
+  align: center;
+}
+
+#title_main {
+
+  align:center;
+
+}
+#title_main span {
+
+  align:center;
+
+}
+#title_main_top {
+  font-size: 100px;
+}

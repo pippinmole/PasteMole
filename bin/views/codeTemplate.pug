@@ -13,6 +13,15 @@ head
       e.innerHTML = input;
       return e.childNodes[0].nodeValue;
     }
+    function CopyEditor() {
+      const code = editor.getValue();
+
+      var sel = editor.selection.toJSON(); // save selection
+      editor.selectAll();
+      editor.focus();
+      document.execCommand("copy");
+      editor.selection.fromJSON(sel); // restore selection
+    }
 
     window.onload = function() {
       OnLoad();
@@ -23,21 +32,22 @@ head
       editor.setValue(startingCode);
       editor.session.setMode("ace/mode/" + startingCodeType);
 
-
-
       editor.setOptions({
         readOnly: true
       });
     }
-h1(style='font-size: 75px')
-  | PasteMole
+h1#title_main
+  span#title_main_top
+    | PasteMole
+    br
+  span(id='') An online code-pasting service
 .textContainer_center
-  h1.header_p
-    | An online code-pasting service.
+
   //
     Main code pasting goes here
   a(href='index.html')
     button.submitCode_button  Make new Paste
+  button#copyTextButton(type='image' onclick='CopyEditor()') Copy to clipboard
   // <button class="submitCode_button" onclick="Highlight()"> Highlight </button>
   #editor.codePastingArea
 
