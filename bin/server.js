@@ -27,7 +27,7 @@ database.getTableCount((tableCount) => {
 app.set("view engine", "pug");
 
 // Start listening on PORT
-app.listen(80, () => console.log("Listening on 80"));
+app.listen(5000, () => console.log("Listening on 5000"));
 
 // Redirect incoming clients to default(index.html) inside 'client' folder
 app.use(express.static('./client'));
