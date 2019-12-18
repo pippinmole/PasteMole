@@ -7,7 +7,7 @@ const URL_LENGTH = "10"; // Length of the URL generated for each paste
 
 module.exports = {
 
-  GenerateNewPaste: function(paste, response) {
+  GenerateNewPaste: function(paste, response, callback) {
 
     const pasteName = paste.pasteName;
     const pasteDescription = paste.pasteDescription;
@@ -25,6 +25,8 @@ module.exports = {
 
     // Write it to database
     database.WriteToDatabase(data);
+
+    callback(true);
 
     // Redirect client via response
     response.json({

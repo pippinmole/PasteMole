@@ -73,5 +73,21 @@ module.exports = {
         callback(data);
       });
     });
+  },
+  getTableCount: function(callback) {
+    var count = 0;
+
+    let db = new sqlite.Database("codeBlocks.db");
+
+    db.serialize(function() {
+      let sql = "SELECT * FROM codeBlocks";
+
+      db.each(sql, [url], function(err, row) {
+        count += 1;
+      }, function() {
+        db.close();
+        callback(count);
+      });
+    });
   }
 }

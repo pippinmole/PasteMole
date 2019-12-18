@@ -1,8 +1,3 @@
-const sqlite = require("sqlite3").verbose();
-
-// APP CONSTANTS
-const SERVER_BANDWIDTH_LIMIT = "20mb"; // Limits the client post bandwidth
-
 // APP SETUP
 const express = require('express');
 const app = express();
@@ -12,10 +7,22 @@ const utilities = require("./Utilities/utilities.js");
 const serverutilities = require("./server/server-util.js");
 
 // Database Functions Imports
+const sqlite = require("sqlite3").verbose();
 const database = require("./server/databaseFunctions.js");
 database.CreateDatabase();
 
+// Template Imports
 const pug = require("pug");
+
+// APP CONSTANTS
+const SERVER_BANDWIDTH_LIMIT = "20mb"; // Limits the client post bandwidth
+
+// DYNAMIC APP VARIABLES
+let CURRENT_PASTES_AVAILABLE = 0;
+
+database.getTableCount((tableCount) => {
+  CURRENT_PASTES_AVAILABLE = tableCount;
+})
 
 app.set("view engine", "pug");
 
@@ -39,8 +46,14 @@ app.post('/', (request, response) => {
     const data = request.body;
 
     // Generate new paste
-    serverutilities.GenerateNewPaste(data, response);
+    serverutilities.GenerateNewPaste(data, response, (successfull) => {
+      if(successfull) {
+        CURRENT_PASTES_AVAILABLE += 1;
+      }
+    });
   }
+
+  console.log("Current Pastes: " + CURRENT_PASTES_AVAILABLE);
 });
 
 app.get("/p/:id", (request, response) => {
