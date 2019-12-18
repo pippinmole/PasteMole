@@ -82,7 +82,7 @@ module.exports = {
     db.serialize(function() {
       let sql = "SELECT * FROM codeBlocks";
 
-      db.each(sql, [url], function(err, row) {
+      db.each(sql, function(err, row) {
         count += 1;
       }, function() {
         db.close();
