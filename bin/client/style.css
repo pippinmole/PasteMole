@@ -121,6 +121,7 @@ footer p {
 
   color: white;
   font-family: Inconsolata, Monaco, Consolas, 'Courier New', Courier;
+  word-wrap: break-word;
 }
 
 #pasteProperties_jsonHeader {
