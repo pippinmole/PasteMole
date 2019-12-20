@@ -3,6 +3,7 @@
     <title>Home | PasteMole</title>
 
     <link rel="stylesheet" type="text/css" href="./style.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="client.js"></script>
 
@@ -18,6 +19,15 @@
       </h1>
 
       <div class="textContainer_center">
+        <ul>
+          <li><a class="active" href="https://portfolio.ruffles.pw/">Portfolio</a></li>
+          <li><a href="https://paste.ruffles.pw/">Text-Based Pastes</a></li>
+          <li><a href="/">Image-Based Pastes</a></li> <!--https://image.ruffles.pw/-->
+          <!--<li><a href="#about">Home</a></li>-->
+        </ul>
+      </div>
+
+      <div class="textContainer_center">
 
         <p>
           Paste your code in the text field, change the paste properties, and then hit '<span style="font-weight: bold">Submit</span>'.
@@ -27,7 +37,7 @@
         Main code pasting goes here
         -->
 
-        <button class="submitCode_button" onclick="SubmitCode()"> Submit </button>
+        <span style="width:50%"><button class="submitCode_button" onclick="SubmitCode()"> Submit </button></span>
 
         <!--<button class="submitCode_button" onclick="Highlight()"> Highlight </button>-->
 
