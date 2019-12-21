@@ -7,6 +7,8 @@
 //
 //
 
+const CODE_CHARACTER_LENGTH_MAX = 10; // 10k
+
 var editor;
 
 function OnLoad() {
@@ -41,6 +43,19 @@ function SubmitCode() {
   if(_code == undefined || _code == "") {
     console.log("You should enter something into the code block before sending it!");
     return;
+  } else if(_code.length > CODE_CHARACTER_LENGTH_MAX) {
+
+    const errorMessage = "Code character length should be less than 10,000"
+
+    $("#error_message").html(errorMessage);
+
+    //document.getElementById("error_message").innerHTML = errorMessage;
+
+    console.log(errorMessage);
+
+    return;
+  } else {
+    $("#error_message").html("");
   }
 
   // Else, return all this to the server
