@@ -27,6 +27,9 @@ module.exports = {
     let sql_entry = "INSERT INTO codeBlocks (url, name, description, code, codeType) VALUES ($url, $name, $description, $code, $codeType)";
 
     OpenDatabase((db) => {
+
+      db.run("BEGIN;")
+
       db.run(sql_entry, {
         $url: data.url,
         $name: data.pasteName,
@@ -34,6 +37,8 @@ module.exports = {
         $code: data.code,
         $codeType: data.codeType
       });
+
+      db.run("COMMIT;");
     });
   },
   // Creates the database
@@ -43,7 +48,11 @@ module.exports = {
     sql_entry = "CREATE TABLE IF NOT EXISTS codeBlocks (url TEXT PRIMARY KEY, name TEXT, description TEXT, code TEXT, codeType TEXT)";
 
     OpenDatabase((db) => {
+      db.run("BEGIN;")
+
       db.run(sql_entry);
+
+      db.run("COMMIT;");
     });
   },
   getPaste: function(url, callback) {
