@@ -8,4 +8,4 @@ def ExecuteSQL(sql):
 
 
 def ReadDatabase():
-    sql_entry = "SELECT * FROM "
+    sql_entry = "SELECT * FROM  "
