@@ -84,6 +84,9 @@ app.get("/p/:id", (request, response) => {
 
 // Redirect all other paths to homepage (Make sure to keep this at the bottom)
 app.all("*", (request, response) => {
+
+  console.log("${request.connection.remoteAddress} connection.");
+
   // Redirect client to homepage
   response.redirect(302, "../index.html");
 });
