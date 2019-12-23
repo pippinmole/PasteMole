@@ -18,3 +18,5 @@ def ReadDatabase():
 
     for i in data:
         print(i);
+
+ReadDatabase();
