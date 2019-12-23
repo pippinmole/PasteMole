@@ -7,13 +7,13 @@ function OpenDatabase(callback) {
 
     if(err) {
       console.log("Could not connect to database: " + err);
+      this.db.close();
       return null;
     } else {
       callback(this.db);
+      this.db.close();
     }
   });
-
-  this.db.close();
 }
 
 module.exports = {
