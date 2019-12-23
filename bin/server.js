@@ -85,7 +85,7 @@ app.get("/p/:id", (request, response) => {
 // Redirect all other paths to homepage (Make sure to keep this at the bottom)
 app.all("*", (request, response) => {
 
-  let requestIP = request.header('x-forwarded-for') || req.connection.remoteAddress;
+  let requestIP = request.header('x-forwarded-for') || request.connection.remoteAddress;
   console.log("(" + requestIP + ") connection.");
 
   // Redirect client to homepage
