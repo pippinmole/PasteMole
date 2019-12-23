@@ -1,7 +1,7 @@
 import sqlite3
 
 def ExecuteSQL(sql):
-    db = sqlite3.connect("../codeBlocks.db")
+    db = sqlite3.connect("../bin/codeBlocks.db")
     cursor = db.cursor()
 
     data = cursor.execute(sql).fetchall()
