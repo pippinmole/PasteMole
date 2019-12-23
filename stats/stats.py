@@ -4,8 +4,17 @@ def ExecuteSQL(sql):
     db = sqlite3.connect("../bin/codeBlocks.db")
     cursor = db.cursor()
 
-    cursor.execute(sql)
+    data = cursor.execute(sql).fetchall()
+
+    db.close()
+
+    return data;
 
 
 def ReadDatabase():
-    sql_entry = "SELECT * FROM  "
+    sql_entry = "SELECT * FROM  codeBlocks";
+
+    data = ExecuteSQL(sql_entry);
+
+    for i in data:
+        print(i);
