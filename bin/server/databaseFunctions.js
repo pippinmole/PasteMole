@@ -3,17 +3,9 @@ const sqlite = require("sqlite3").verbose();
 const DATABASE_PATH = "codeBlocks.db";
 
 function OpenDatabase(callback) {
-  this.db = new sqlite.Database(DATABASE_PATH, (err) => {
-
-    if(err) {
-      console.log("Could not connect to database: " + err);
-      this.db.close();
-      return null;
-    } else {
-      callback(this.db);
-      this.db.close();
-    }
-  });
+  this.db = new sqlite.Database(DATABASE_PATH);
+  callback(this.db);
+  this.db.close();
 }
 
 module.exports = {
