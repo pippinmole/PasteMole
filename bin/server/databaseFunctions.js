@@ -43,6 +43,7 @@ module.exports = {
       $code: data.code,
       $codeType: data.codeType
     });
+    db.run('COMMIT TRANSACTION;');
 
     // TODO: Close
   },
@@ -54,6 +55,7 @@ module.exports = {
 
     let db = OpenDatabase();
     db.run(sql_entry);
+    db.run('COMMIT TRANSACTION;');
   },
   Internal_OpenDatabase: function(sql) {
     return OpenDatabase(sql);
@@ -61,7 +63,7 @@ module.exports = {
   getPaste: function(url, callback) {
     var data = [];
 
-    let db = new sqlite.Database("codeBlocks.db");
+    let db = new sqlite.Database(DATABASE_PATH);
 
     db.serialize(function() {
       let sql = "SELECT * FROM codeBlocks WHERE url=$url";
