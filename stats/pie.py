@@ -31,19 +31,19 @@ def PrintStatistics():
     keys = list(codeTypes.keys())
     values = list(codeTypes.values())
 
-    totalPastes = 0
+    _totalPastes = 0
 
     for i in range(len(keys)):
-        totalPastes += values[i]
+        _totalPastes += values[i]
 
     for i in range(len(keys)):
         # Generate the percentage of that code type (Round to 2 decimal places)
 
         _currentPastes = values[i]
 
-        _percentage = round(_currentPastes / float(totalPastes) * 100, 2)
+        _percentage = round(_currentPastes / float(_totalPastes) * 100, 2)
 
-        print(_percentage, "% of pastes are: ", keys[i], "(", _currentPastes, " of ", totalPastes, ")")
+        print(_percentage, "% of pastes are: ", keys[i], "(", _currentPastes, "of", _totalPastes, ")")
 
 if(sys.argv[1] == "--nogui"):
     PrintStatistics()
