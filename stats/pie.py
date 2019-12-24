@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import stats
+import sys
 
 def DrawPie():
     codeTypes = stats.TallyCodeTypes()
@@ -22,6 +23,27 @@ def DrawBoxPlot():
     plt.title("Length of all pastes in the database")
     plt.show()
 
+def PrintStatistics():
+    print("Printing Statistics...")
 
-DrawPie()
-#DrawBoxPlot()
+    codeTypes = stats.TallyCodeTypes()
+
+    keys = list(codeTypes.keys())
+    values = list(codeTypes.values())
+
+    totalPastes = 0
+
+    for i in range(len(keys)):
+        totalPastes += values[i]
+
+    for i in range(len(keys)):
+        # Generate the percentage of that code type (Round to 2 decimal places)
+        _percentage = round((float(values[i]) / float(totalPastes)) * 100, 2)
+
+        print(_percentage, "% of pastes are: ", keys[i])
+
+if(sys.argv[1] == "--nogui"):
+    PrintStatistics()
+else:
+    DrawPie()
+    DrawBoxPlot()
