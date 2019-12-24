@@ -24,7 +24,7 @@ def DrawBoxPlot():
     plt.show()
 
 def PrintStatistics():
-    print("Printing Statistics...")
+    print("\nPrinting Statistics...")
 
     codeTypes = stats.TallyCodeTypes()
 
@@ -38,9 +38,12 @@ def PrintStatistics():
 
     for i in range(len(keys)):
         # Generate the percentage of that code type (Round to 2 decimal places)
-        _percentage = round((float(values[i]) / float(totalPastes)) * 100, 2)
 
-        print(_percentage, "% of pastes are: ", keys[i])
+        _currentPastes = values[i]
+
+        _percentage = round(_currentPastes / float(totalPastes) * 100, 2)
+
+        print(_percentage, "% of pastes are: ", keys[i], "(", _currentPastes, " of ", totalPastes, ")")
 
 if(sys.argv[1] == "--nogui"):
     PrintStatistics()
