@@ -1,5 +1,3 @@
-const utilities = require("../Utilities/utilities.js");
-
 // Database Functions Imports
 const database = require("./databaseFunctions.js");
 
