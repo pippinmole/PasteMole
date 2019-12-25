@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import stats
 import sys
 
+
 def DrawPie():
     codeTypes = stats.TallyCodeTypes()
 

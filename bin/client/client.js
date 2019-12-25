@@ -7,7 +7,7 @@
 //
 //
 
-const CODE_CHARACTER_LENGTH_MAX = 10; // 10k
+const CODE_CHARACTER_LENGTH_MAX = 100000; // 100k
 
 var editor;
 
