@@ -198,3 +198,8 @@ footer p {
 #title_main_top {
   font-size: 100px;
 }
+
+#error_message {
+  color: red;
+
+}

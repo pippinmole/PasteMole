@@ -1,5 +1,3 @@
-const utilities = require("../Utilities/utilities.js");
-
 // Database Functions Imports
 const database = require("./databaseFunctions.js");
 
@@ -16,7 +14,7 @@ module.exports = {
 
     // Create data object
     let data = {
-      url: utilities.GenerateRandomString(URL_LENGTH),
+      url: GenerateRandomString(URL_LENGTH),
       pasteName: pasteName,
       pasteDescription: pasteDescription,
       code: code,
@@ -35,4 +33,15 @@ module.exports = {
       redirectRoute: "/p/" + data.url
     });
   }
+}
+
+function GenerateRandomString(length) {
+  let text = "";
+  let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (var i = 0; i < length; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+
+  return text;
 }

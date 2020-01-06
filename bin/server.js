@@ -3,7 +3,6 @@ const express = require('express');
 const app = express();
 
 // Utilities.js
-const utilities = require("./Utilities/utilities.js");
 const serverutilities = require("./server/server-util.js");
 
 // Database Functions Imports
