@@ -1,4 +1,22 @@
+body {
+  background-color: #141414;
 
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  color: rgb(219, 219, 219);
+  text-align: center;
+}
+
+footer {
+  text-color: rgb(201, 201, 201);
+  text-align: center;
+}
+
+footer p {
+  font-size: 13px;
+}
 
 .main_photo {
   border-radius: 50%;
