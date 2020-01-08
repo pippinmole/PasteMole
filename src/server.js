@@ -29,7 +29,7 @@ app.set("view engine", "pug");
 app.listen(5000, () => console.log("Listening on 5000"));
 
 // Redirect incoming clients to default(index.html) inside 'client' folder
-app.use(express.static('./client'));
+app.use(express.static(__dirname + "/client/"));
 app.use(express.json({
   // Protects clients from sending loads of data at once
   limit: SERVER_BANDWIDTH_LIMIT
