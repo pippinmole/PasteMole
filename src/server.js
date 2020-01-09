@@ -76,7 +76,7 @@ app.get("/p/:id", (request, response) => {
       }
 
       // Send the response back to the client
-      response.render("codeTemplate", _render);
+      response.render(__dirname + "/views/codeTemplate", _render);
     }
   });
 });
