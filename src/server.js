@@ -45,8 +45,8 @@ app.post('/', (request, response) => {
     const data = request.body;
 
     // Generate new paste
-    serverutilities.GenerateNewPaste(data, response, (successfull) => {
-      if(successfull) {
+    serverutilities.GenerateNewPaste(data, response, (successful) => {
+      if(successful) {
         CURRENT_PASTES_AVAILABLE += 1;
       }
     });
