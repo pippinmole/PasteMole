@@ -16,14 +16,14 @@ const pug = require("pug");
 // APP CONSTANTS
 const SERVER_BANDWIDTH_LIMIT = "20mb"; // Limits the client post bandwidth
 
+app.set("view engine", "pug");
+
 // DYNAMIC APP VARIABLES
 let CURRENT_PASTES_AVAILABLE = 0;
 
 database.getTableCount((tableCount) => {
   CURRENT_PASTES_AVAILABLE = tableCount;
 })
-
-app.set("view engine", "pug");
 
 // Start listening on PORT
 app.listen(5000, () => console.log("Listening on 5000"));
@@ -76,7 +76,7 @@ app.get("/p/:id", (request, response) => {
       }
 
       // Send the response back to the client
-      response.render(__dirname + "/views/codeTemplate", _render);
+      response.render(__dirname + "/client/views/codeTemplate", _render);
     }
   });
 });
