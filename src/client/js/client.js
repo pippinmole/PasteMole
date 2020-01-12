@@ -47,6 +47,7 @@ function SubmitCode() {
 
     console.log(errorMessage);
     $("#error_message").html(errorMessage);
+    return;
   } else {
     $("#error_message").html("");
   }
@@ -78,13 +79,19 @@ function SubmitCode() {
   //   codeType: "javascript"
   // }
 
-  const _pasteData = {
+  let _pasteData = {
     pasteName: _pasteName,
     pasteDescription: _pasteDescription,
     code: _code,
     codeType: _codeType
   };
 
+  // Assumed password content
+  if(_passworded) {
+    // Encrypt paste
+    _pasteData = CryptoJS.AES.encrypt(JSON.stringify(_pasteData), _password).toString();
+  }
+  
   const data = {
     pasteData: _pasteData,
     passworded: _passworded
@@ -134,7 +141,6 @@ function OnPasswordInputChanged() {
   console.log("Passworded: " + value);
 
   // Enable/disable password box
-  console.log($(".paste_passwordGroup")[0]);
   $(".paste_passwordGroup")[0].style.visibility = value ? "visible" : "hidden";
 
 }

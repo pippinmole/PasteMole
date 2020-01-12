@@ -252,6 +252,7 @@ footer p {
   transition: 0.3s;
 
   font-weight: bold;
+  cursor: pointer;
 }
 
 .submitCode_button:hover {
@@ -330,6 +331,7 @@ footer p {
   transition: 0.3s;
 
   font-weight: bold;
+  cursor: pointer;
 }
 
 #copyTextButton:hover {

@@ -26,7 +26,7 @@ database.getTableCount((tableCount) => {
 })
 
 // Start listening on PORT
-app.listen(5000, () => console.log("Listening on 5000"));
+app.listen(80, () => console.log("Listening on 80"));
 
 // Redirect incoming clients to default(index.html) inside 'client' folder
 app.use(express.static(__dirname + "/client/"));
@@ -43,17 +43,11 @@ app.post('/', (request, response) => {
     console.log("Recieved valid request: " + request);
 
     const paste = request.body;
-    const data = paste.pasteData;
-    const passworded = paste.passworded;
 
-    if(passworded) {
-        // TODO:
-        // 1. Add 'passworded' entry in database
-        // 2. Add 'login' page to each paste that is passworded
-    }
+    console.log("Recieved: " + paste.pasteData)
 
     // Generate new paste
-    serverutilities.GenerateNewPaste(data, response, (successful) => {
+    serverutilities.GenerateNewPaste(paste, response, (successful) => {
       if(successful) {
         CURRENT_PASTES_AVAILABLE += 1;
       }
@@ -75,12 +69,17 @@ app.get("/p/:id", (request, response) => {
     } else {
       const paste = rows[0];
 
+      if(paste.passworded) {
+        console.log("Sending: " + paste);
+      }
+
       // Send to code template (with paste object)
       const _render = {
         pasteName: paste.name,
         pasteDescription: paste.description,
         pasteContents: paste.code,
-        pasteType: paste.codeType
+        pasteType: paste.codeType,
+        passworded: paste.passworded
       }
 
       // Send the response back to the client

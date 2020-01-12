@@ -7,19 +7,29 @@ module.exports = {
 
   GenerateNewPaste: function(paste, response, callback) {
 
-    const pasteName = paste.pasteName;
-    const pasteDescription = paste.pasteDescription;
-    const code = paste.code;
-    const codeType = paste.codeType;
+    const pasteName = paste.pasteData.pasteName;
+    const pasteDescription = paste.pasteData.pasteDescription;
+    const code = paste.pasteData.code;
+    const codeType = paste.pasteData.codeType;
+    const passworded = paste.passworded;
+    const encryptedBody = paste.pasteData;
 
     // Create data object
-    let data = {
+    const data = passworded ? {
+      url: GenerateRandomString(URL_LENGTH),
+      code: encryptedBody,
+      passworded: passworded
+    } :
+    {
       url: GenerateRandomString(URL_LENGTH),
       pasteName: pasteName,
       pasteDescription: pasteDescription,
       code: code,
-      codeType: codeType
+      codeType: codeType,
+      passworded: passworded
     }
+
+    console.log("Saving: " + code);
 
     // Write it to database
     database.WriteToDatabase(data);

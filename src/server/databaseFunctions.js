@@ -24,7 +24,7 @@ module.exports = {
   //
   WriteToDatabase: function(data) {
 
-    let sql_entry = "INSERT INTO codeBlocks (url, name, description, code, codeType) VALUES ($url, $name, $description, $code, $codeType)";
+    let sql_entry = "INSERT INTO codeBlocks (url, name, description, code, codeType, passworded) VALUES ($url, $name, $description, $code, $codeType, $passworded)";
 
     OpenDatabase((db) => {
 
@@ -35,7 +35,8 @@ module.exports = {
         $name: data.pasteName,
         $description: data.pasteDescription,
         $code: data.code,
-        $codeType: data.codeType
+        $codeType: data.codeType,
+        $passworded: data.passworded
       });
 
       db.run("COMMIT;");
@@ -45,7 +46,7 @@ module.exports = {
   CreateDatabase: function() {
     console.log("Creating the database schema");
 
-    sql_entry = "CREATE TABLE IF NOT EXISTS codeBlocks (url TEXT PRIMARY KEY, name TEXT, description TEXT, code TEXT, codeType TEXT)";
+    sql_entry = "CREATE TABLE IF NOT EXISTS codeBlocks (url TEXT PRIMARY KEY, name TEXT, description TEXT, code TEXT, codeType TEXT, passworded BOOLEAN)";
 
     OpenDatabase((db) => {
       db.run("BEGIN;")

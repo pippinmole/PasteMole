@@ -4,10 +4,116 @@ head
   title Paste | PasteMole
   link(rel='stylesheet' type='text/css' href='../css/style.css')
   script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js')
   script(src='../js/client.js')
+  style.
+    * {box-sizing: border-box;}
+    /* Full-width input fields */
+    input[type=password] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      display: inline-block;
+      border: none;
+      background: #f1f1f1;
+    }
+    /* Add a background color when the inputs get focus */
+    input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+    /* Set a style for all buttons */
+    button {
+      cursor: pointer;
+      width: 100%;
+      opacity: 0.9;
+    }
+    button:hover {
+      opacity:1;
+    }
+    /* Extra styles for the cancel button */
+    .cancelbtn {
+      padding: 14px 20px;
+      background-color: #f44336;
+    }
+    /* Float cancel and signup buttons and add an equal width */
+    .cancelbtn {
+      float: left;
+      width: 100%;
+    }
+    /* Add padding to container elements */
+    .container {
+      padding: 16px;
+    }
+    /* The Modal (background) */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      left: 0;
+      top: 0;
+      z-index: 100;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: #474e5d;
+      padding-top: 50px;
+    }
+    /* Modal Content/Box */
+    .modal-content {
+      z-index: 100;
+      background-color: #fefefe;
+      margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+      border: 1px solid #888;
+      width: 80%; /* Could be more or less, depending on screen size */
+    }
+    /* Style the horizontal ruler */
+    hr {
+      border: 1px solid #f1f1f1;
+      margin-bottom: 25px;
+    }
+    /* Clear floats */
+    .clearfix::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+    /* Change styles for cancel button and signup button on extra small screens */
+  | @media screen and (max-width: 300px) {
+  |   .cancelbtn, .signupbtn {
+  |      width: 100%;
+  |   }
+  | }
+  script.
+    // Get the modal
+    var modal = document.getElementById('id01');
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+    if (event.target == modal) {
+    modal.style.display = "none";
+    }
+    }
+
+
   // ace.js libs
   script(src='https://pagecdn.io/lib/ace/1.4.7/ace.js' type='text/javascript' charset='utf-8')
   script.
+    function DecryptMessage() {
+      const _password = $(".passwordField").val();
+      let _content = $("#startingCode")[0].innerHTML;
+      const _contentType = $("#startingCodeType")[0].innerHTML;
+      const _passworded = $("#startingPassworded")[0].innerHTML == "0" ? false : true;
+
+      if(_passworded) {
+        _content = CryptoJS.AES.decrypt(_content, _password).toString(CryptoJS.enc.Utf8);
+        console.log(_content);
+      }
+
+      DisplayEditor(_content, startingCodeType)
+
+      document.getElementById('id01').style.display = "none";
+    }
+
     function htmlDecode(input) {
       var e = document.createElement('div');
       e.innerHTML = input;
@@ -23,14 +129,18 @@ head
       editor.selection.fromJSON(sel); // restore selection
     }
 
+    function DisplayEditor(startingCode, startingCodeType) {
+      editor.setValue(startingCode);
+      editor.session.setMode("ace/mode/" + startingCodeType);
+    }
+
     window.onload = function() {
       OnLoad();
 
       let startingCode = htmlDecode(document.getElementById('startingCode').innerHTML);
       let startingCodeType = document.getElementById('startingCodeType').innerHTML;
 
-      editor.setValue(startingCode);
-      editor.session.setMode("ace/mode/" + startingCodeType);
+      DisplayEditor(startingCode, startingCodeType);
 
       editor.setOptions({
         readOnly: true
@@ -41,6 +151,9 @@ h1#title_main
     | PasteMole
     br
   span(id='') An online code-pasting service
+
+  button(onclick="document.getElementById('id01').style.display='block'" style='width:auto;') Sign Up
+
 .textContainer_center
   ul
     li
@@ -97,6 +210,18 @@ h1#title_main
       span(style='font-weight: bold;') E-Mail:
       a(href='mailto:jonathan@ruffles.dev') jonathan@ruffles.dev
 
-
   p#startingCode= pasteContents
   p#startingCodeType= pasteType
+  p#startingPassworded= passworded
+
+  #id01.modal
+    .modal-content
+      .container
+        h1 Enter Password
+        p This paste is password-protected.
+        hr
+        label(for='psw')
+          b Password
+        input(class="passwordField" type='password' placeholder='Enter Password' name='psw' required='')
+        .clearfix
+          button#copyTextButton(type='submit' onclick='DecryptMessage()') Enter
