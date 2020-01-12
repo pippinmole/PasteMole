@@ -283,7 +283,7 @@ footer p {
   font-style: bold;
 }
 
-.paste_name, .paste_description {
+.paste_name, .paste_description, .paste_passwordfield {
 
   font-size: 15px;
   font-style: bold;

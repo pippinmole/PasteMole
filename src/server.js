@@ -42,7 +42,15 @@ app.post('/', (request, response) => {
   } else {
     console.log("Recieved valid request: " + request);
 
-    const data = request.body;
+    const paste = request.body;
+    const data = paste.pasteData;
+    const passworded = paste.passworded;
+
+    if(passworded) {
+        // TODO:
+        // 1. Add 'passworded' entry in database
+        // 2. Add 'login' page to each paste that is passworded
+    }
 
     // Generate new paste
     serverutilities.GenerateNewPaste(data, response, (successful) => {

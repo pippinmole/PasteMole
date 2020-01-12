@@ -12,6 +12,7 @@ const CODE_CHARACTER_LENGTH_MAX = 100000; // 100k
 var editor;
 
 function OnLoad() {
+
   // ace.js
   editor = ace.edit("editor");
 
@@ -38,21 +39,31 @@ function SubmitCode() {
   const _pasteDescription = $(".paste_description").val();
   const _code = editor.getValue();
   const _codeType = $(".codeTypeSelector").val();
+  const _passworded = $(".paste_passworded")[0].checked;
+  const _password = $(".paste_passwordfield").val();
+
+  if(_passworded && _password == "") {
+    const errorMessage = "You should enter a password, or uncheck 'Passworded'!";
+
+    console.log(errorMessage);
+    $("#error_message").html(errorMessage);
+  } else {
+    $("#error_message").html("");
+  }
 
   // Clean content of the codePastingArea
   if(_code == undefined || _code == "") {
-    console.log("You should enter something into the code block before sending it!");
+    const errorMessage = "You should enter something into the code block before sending it!";
+
+    console.log(errorMessage);
+    $("#error_message").html(errorMessage);
     return;
   } else if(_code.length > CODE_CHARACTER_LENGTH_MAX) {
 
     const errorMessage = "Code character length should be less than 10,000"
 
-    $("#error_message").html(errorMessage);
-
-    //document.getElementById("error_message").innerHTML = errorMessage;
-
     console.log(errorMessage);
-
+    $("#error_message").html(errorMessage);
     return;
   } else {
     $("#error_message").html("");
@@ -66,11 +77,17 @@ function SubmitCode() {
   //   code: "let x = 5;",
   //   codeType: "javascript"
   // }
-  const data = {
+
+  const _pasteData = {
     pasteName: _pasteName,
     pasteDescription: _pasteDescription,
     code: _code,
     codeType: _codeType
+  };
+
+  const data = {
+    pasteData: _pasteData,
+    passworded: _passworded
   };
 
   // Store the different sending options to the server
@@ -107,4 +124,17 @@ function OnCodeTypeSelectorChanged() {
   editor.session.setMode("ace/mode/" + value);
 
   console.log("ace/mode/" + value);
+}
+
+
+function OnPasswordInputChanged() {
+
+  const value = $(".paste_passworded")[0].checked;
+
+  console.log("Passworded: " + value);
+
+  // Enable/disable password box
+  console.log($(".paste_passwordGroup")[0]);
+  $(".paste_passwordGroup")[0].style.visibility = value ? "visible" : "hidden";
+
 }
