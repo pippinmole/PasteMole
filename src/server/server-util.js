@@ -12,24 +12,16 @@ module.exports = {
     const code = paste.pasteData.code;
     const codeType = paste.pasteData.codeType;
     const passworded = paste.passworded;
-    const encryptedBody = paste.pasteData;
 
     // Create data object
-    const data = passworded ? {
-      url: GenerateRandomString(URL_LENGTH),
-      code: encryptedBody,
-      passworded: passworded
-    } :
-    {
+    const data = {
       url: GenerateRandomString(URL_LENGTH),
       pasteName: pasteName,
       pasteDescription: pasteDescription,
       code: code,
       codeType: codeType,
       passworded: passworded
-    }
-
-    console.log("Saving: " + code);
+    };
 
     // Write it to database
     database.WriteToDatabase(data);

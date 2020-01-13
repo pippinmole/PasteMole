@@ -79,19 +79,18 @@ function SubmitCode() {
   //   codeType: "javascript"
   // }
 
-  let _pasteData = {
+  let _pasteData = _passworded ? {
+    pasteName: CryptoJS.AES.encrypt(_pasteName, _password).toString(),
+    pasteDescription: CryptoJS.AES.encrypt(_pasteDescription, _password).toString(),
+    code: CryptoJS.AES.encrypt(_code, _password).toString(),
+    codeType: CryptoJS.AES.encrypt(_codeType, _password).toString()
+  } : {
     pasteName: _pasteName,
     pasteDescription: _pasteDescription,
     code: _code,
     codeType: _codeType
   };
 
-  // Assumed password content
-  if(_passworded) {
-    // Encrypt paste
-    _pasteData = CryptoJS.AES.encrypt(JSON.stringify(_pasteData), _password).toString();
-  }
-  
   const data = {
     pasteData: _pasteData,
     passworded: _passworded

@@ -73,6 +73,11 @@ app.get("/p/:id", (request, response) => {
         console.log("Sending: " + paste);
       }
 
+      console.log("Paste Name: " + paste.name);
+      console.log("Paste Description: " + paste.description);
+      console.log("Paste Content: " + paste.code);
+      console.log("Paste Type: " + paste.codeType);
+
       // Send to code template (with paste object)
       const _render = {
         pasteName: paste.name,

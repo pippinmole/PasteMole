@@ -100,18 +100,23 @@ head
   script.
     function DecryptMessage() {
       const _password = $(".passwordField").val();
-      let _content = $("#startingCode")[0].innerHTML;
-      const _contentType = $("#startingCodeType")[0].innerHTML;
-      const _passworded = $("#startingPassworded")[0].innerHTML == "0" ? false : true;
+
+      let _pasteName = $("#startingPasteName")[0].innerHTML;
+      let _pasteDescription = $("#startingPasteDescription")[0].innerHTML;
+      let _pasteContents = $("#startingPasteContents")[0].innerHTML;
+      let _pasteContentType = $("#startingPasteType")[0].innerHTML;
+      let _passworded = $("#startingPassworded")[0].innerHTML == "0" ? false : true;
 
       if(_passworded) {
-        _content = CryptoJS.AES.decrypt(_content, _password).toString(CryptoJS.enc.Utf8);
-        console.log(_content);
+        _pasteName = CryptoJS.AES.decrypt(_pasteName, _password).toString(CryptoJS.enc.Utf8);
+        _pasteDescription = CryptoJS.AES.decrypt(_pasteDescription, _password).toString(CryptoJS.enc.Utf8);
+        _pasteContents = CryptoJS.AES.decrypt(_pasteContents, _password).toString(CryptoJS.enc.Utf8);
+        _contentType = CryptoJS.AES.decrypt(_pasteContentType, _password).toString(CryptoJS.enc.Utf8);
       }
 
-      DisplayEditor(_content, startingCodeType)
+      DisplayEditor(_pasteContents, _pasteContentType);
 
-      document.getElementById('id01').style.display = "none";
+      document.getElementById("id01").style.display = "none";
     }
 
     function htmlDecode(input) {
@@ -137,8 +142,13 @@ head
     window.onload = function() {
       OnLoad();
 
-      let startingCode = htmlDecode(document.getElementById('startingCode').innerHTML);
-      let startingCodeType = document.getElementById('startingCodeType').innerHTML;
+      // If passworded, show password entry
+      if(document.getElementById('startingPassworded').innerHTML == "1") {
+        document.getElementById("id01").style.display = "block";
+      }
+
+      const startingCode = htmlDecode(document.getElementById('startingPasteContents').innerHTML);
+      const startingCodeType = document.getElementById('startingPasteType').innerHTML;
 
       DisplayEditor(startingCode, startingCodeType);
 
@@ -210,8 +220,10 @@ h1#title_main
       span(style='font-weight: bold;') E-Mail:
       a(href='mailto:jonathan@ruffles.dev') jonathan@ruffles.dev
 
-  p#startingCode= pasteContents
-  p#startingCodeType= pasteType
+  p#startingPasteName= pasteName
+  p#startingPasteDescription= pasteDescription
+  p#startingPasteContents= pasteContents
+  p#startingPasteType= pasteType
   p#startingPassworded= passworded
 
   #id01.modal
