@@ -1,9 +1,9 @@
 const sqlite = require("sqlite3").verbose();
 
-const DATABASE_PATH = "codeBlocks.db";
+const DATABASE_PATH = "./databases/codeBlocks.db";
 
 function OpenDatabase(callback) {
-  this.db = new sqlite.Database(DATABASE_PATH, sqlite.OPEN_READWRITE | sqlite.OPEN_CREATE, (err) => {
+  const db = new sqlite.Database(DATABASE_PATH, sqlite.OPEN_READWRITE | sqlite.OPEN_CREATE, (err) => {
     if(!err){
      console.log("Successfully created DB file: " + DATABASE_PATH);
     } else {
@@ -11,8 +11,8 @@ function OpenDatabase(callback) {
     }
   });
 
-  callback(this.db);
-  this.db.close();
+  callback(db);
+  db.close();
 }
 
 module.exports = {
