@@ -51,7 +51,7 @@ module.exports = {
     OpenDatabase((db) => {
 
       console.log(db);
-      
+
       db.run("BEGIN;")
 
       db.run(sql_entry);
