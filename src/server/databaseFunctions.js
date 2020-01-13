@@ -4,20 +4,21 @@ const path = require('path')
 const DATABASE_PATH = "/databases/codeBlocks.db";
 
 function OpenDatabase(callback) {
-  const db = new sqlite.Database(__dirname + DATABASE_PATH, (err) => {
+  const db = new sqlite.Database(__dirname + "/temp/" + DATABASE_PATH, (err) => {
     if(!err) {
       console.log("Successfully created database file: " + DATABASE_PATH);
     } else {
-      console.log("Failed to create/open database file: " + DATABASE_PATH + ". Error: " + err );
+      console.log("Failed to create/open database file: " + DATABASE_PATH + ". Error: " + err);
     }
   });
 
   callback(db);
+
   db.close((err) => {
     if(!err) {
       console.log("Successfully closed database connection: " + DATABASE_PATH);
     } else {
-      console.log("Failed to close database connection: " + DATABASE_PATH + ". Error: " + err );
+      console.log("Failed to close database connection: " + DATABASE_PATH + ". Error: " + err);
     }
   });
 }
