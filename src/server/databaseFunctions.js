@@ -75,6 +75,7 @@ module.exports = {
         let sql = "SELECT * FROM codeBlocks WHERE url=$url";
 
         db.each(sql, [url], function(err, row) {
+          console.log(row);
           data.push(row);
         }, () => {
           callback(data);
