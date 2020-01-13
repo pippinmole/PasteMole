@@ -44,11 +44,14 @@ module.exports = {
   },
   // Creates the database
   CreateDatabase: function() {
-    console.log("Creating the database schema: " + __dirname + "/"+ DATABASE_PATH);
+    console.log("Creating the database schema: " + __dirname + "/" + DATABASE_PATH);
 
     sql_entry = "CREATE TABLE IF NOT EXISTS codeBlocks (url TEXT PRIMARY KEY, name TEXT, description TEXT, code TEXT, codeType TEXT, passworded BOOLEAN)";
 
     OpenDatabase((db) => {
+
+      console.log(db);
+      
       db.run("BEGIN;")
 
       db.run(sql_entry);
