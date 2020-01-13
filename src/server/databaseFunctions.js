@@ -3,7 +3,6 @@ const sqlite = require("sqlite3").verbose();
 const DATABASE_PATH = "codeBlocks.db";
 
 function OpenDatabase(callback) {
-  console.log(__dirname + DATABASE_PATH);
   this.db = new sqlite.Database(DATABASE_PATH);
   callback(this.db);
   this.db.close();
@@ -45,7 +44,7 @@ module.exports = {
   },
   // Creates the database
   CreateDatabase: function() {
-    console.log("Creating the database schema");
+    console.log("Creating the database schema: " + __dirname + DATABASE_PATH);
 
     sql_entry = "CREATE TABLE IF NOT EXISTS codeBlocks (url TEXT PRIMARY KEY, name TEXT, description TEXT, code TEXT, codeType TEXT, passworded BOOLEAN)";
 
