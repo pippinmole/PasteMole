@@ -148,8 +148,8 @@ head
       OnLoad();
 
       // If passworded, show password entry
-      if(document.getElementById('startingPassworded').innerHTML == "1") {
-        document.getElementById("id01").style.display = "visible";
+      if($("#startingPassworded")[0].innerHTML == "1") {
+        document.getElementById('id01').style.display = "block";
       }
 
       DecryptMessage();
@@ -163,8 +163,6 @@ h1#title_main
     | PasteMole
     br
   span(id='') An online code-pasting service
-
-  button(onclick="document.getElementById('id01').style.display='block'" style='width:auto;') Sign Up
 
 .textContainer_center
   ul
