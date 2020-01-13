@@ -78,12 +78,6 @@ head
       clear: both;
       display: table;
     }
-    /* Change styles for cancel button and signup button on extra small screens */
-  | @media screen and (max-width: 300px) {
-  |   .cancelbtn, .signupbtn {
-  |      width: 100%;
-  |   }
-  | }
   script.
     // Get the modal
     var modal = document.getElementById('id01');
@@ -107,16 +101,36 @@ head
       let _pasteContentType = $("#startingPasteType")[0].innerHTML;
       let _passworded = $("#startingPassworded")[0].innerHTML == "0" ? false : true;
 
-      if(_passworded) {
+      if(_passworded && _password != "") {
         _pasteName = CryptoJS.AES.decrypt(_pasteName, _password).toString(CryptoJS.enc.Utf8);
         _pasteDescription = CryptoJS.AES.decrypt(_pasteDescription, _password).toString(CryptoJS.enc.Utf8);
         _pasteContents = CryptoJS.AES.decrypt(_pasteContents, _password).toString(CryptoJS.enc.Utf8);
-        _contentType = CryptoJS.AES.decrypt(_pasteContentType, _password).toString(CryptoJS.enc.Utf8);
+        _pasteContentType = CryptoJS.AES.decrypt(_pasteContentType, _password).toString(CryptoJS.enc.Utf8);
       }
 
-      DisplayEditor(_pasteContents, _pasteContentType);
+      console.log("Paste Name: " + _pasteName);
+      console.log("Paste Description: " + _pasteDescription);
+      console.log("Paste Content: " + _pasteContents);
+      console.log("Paste Type: " + _pasteContentType);
+
+      DisplayEditor(_pasteName, _pasteDescription, _pasteContents, _pasteContentType);
 
       document.getElementById("id01").style.display = "none";
+    }
+
+    function DisplayEditor(_pasteName, _pasteDescription, _pasteContents, _pasteContentType) {
+      // Should be all decrypted by this point
+
+      editor.setValue(_pasteContents);
+      editor.session.setMode("ace/mode/" + _pasteContentType);
+
+      const pasteNameJson = $(".pasteProperties_pasteName")[0];
+      const pasteDescriptionJson = $(".pasteProperties_pasteDescription")[0];
+      const pasteTypeJson = $(".pasteProperties_pasteType")[0];
+
+      pasteNameJson.innerHTML = '"' + _pasteName + '"';
+      pasteDescriptionJson.innerHTML = '"' + _pasteDescription + '"';
+      pasteTypeJson.innerHTML = '"' + _pasteContentType + '"';
     }
 
     function htmlDecode(input) {
@@ -134,11 +148,6 @@ head
       editor.selection.fromJSON(sel); // restore selection
     }
 
-    function DisplayEditor(startingCode, startingCodeType) {
-      editor.setValue(startingCode);
-      editor.session.setMode("ace/mode/" + startingCodeType);
-    }
-
     window.onload = function() {
       OnLoad();
 
@@ -147,10 +156,7 @@ head
         document.getElementById("id01").style.display = "block";
       }
 
-      const startingCode = htmlDecode(document.getElementById('startingPasteContents').innerHTML);
-      const startingCodeType = document.getElementById('startingPasteType').innerHTML;
-
-      DisplayEditor(startingCode, startingCodeType);
+      DecryptMessage();
 
       editor.setOptions({
         readOnly: true
@@ -191,21 +197,21 @@ h1#title_main
       | &emsp;&emsp;&emsp;&emsp;
       span#pasteProperties_jsonHeader &quot;pasteName&quot;
       | :
-      span#pasteProperties_jsonProperty &quot;#{pasteName}&quot;
+      span#pasteProperties_jsonProperty.pasteProperties_pasteName &quot;&quot;
       | ,
       br
       | &emsp;&emsp;&emsp;&emsp;
       span#pasteProperties_jsonHeader &quot;pasteDescription&quot;
       | :
-      span#pasteProperties_jsonProperty &quot;#{pasteDescription}&quot;
+      span#pasteProperties_jsonProperty.pasteProperties_pasteDescription &quot;&quot;
       | ,
       br
       | &emsp;&emsp;&emsp;&emsp;
       span#pasteProperties_jsonHeader &quot;pasteType&quot;
       | :
-      span#pasteProperties_jsonProperty &quot;#{pasteType}&quot;
+      span#pasteProperties_jsonProperty.pasteProperties_pasteType &quot;&quot;
       br
-      |             }
+      |  }
 
 
 .textContainer_center

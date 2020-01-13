@@ -274,7 +274,7 @@ footer p {
   border-radius: 5px;
 }
 
-#startingCode, #startingCodeType {
+#startingPasteName, #startingPasteDescription, #startingPasteContents, #startingPasteType, #startingPassworded {
   font-size: 0px;
   opacity: 0%;
 }
