@@ -26,7 +26,9 @@ database.getTableCount((tableCount) => {
 })
 
 // Start listening on PORT
-app.listen(80, () => console.log("Listening on 80"));
+// ::5000 -> PasteMole
+// ::5500 -> Portfolio
+app.listen(5000, () => console.log("Listening on 5000"));
 
 // Redirect incoming clients to default(index.html) inside 'client' folder
 app.use(express.static(__dirname + "/client/"));
@@ -40,15 +42,14 @@ app.post('/', (request, response) => {
   if(request == undefined) {
     console.log("Recieved undefined request.");
   } else {
-    console.log("Recieved valid request: " + request);
+    //console.log("Recieved valid request: " + request);
 
     const paste = request.body;
-
-    console.log("Recieved: " + paste.pasteData)
 
     // Generate new paste
     serverutilities.GenerateNewPaste(paste, response, (successful) => {
       if(successful) {
+        console.log("Creating paste: " + paste.pasteData.pasteName);
         CURRENT_PASTES_AVAILABLE += 1;
       }
     });
@@ -68,15 +69,6 @@ app.get("/p/:id", (request, response) => {
       response.redirect(302, "../index.html");
     } else {
       const paste = rows[0];
-
-      if(paste.passworded) {
-        console.log("Sending: " + paste);
-      }
-
-      console.log("Paste Name: " + paste.name);
-      console.log("Paste Description: " + paste.description);
-      console.log("Paste Content: " + paste.code);
-      console.log("Paste Type: " + paste.codeType);
 
       // Send to code template (with paste object)
       const _render = {
