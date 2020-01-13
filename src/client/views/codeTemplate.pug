@@ -81,11 +81,12 @@ head
   script.
     // Get the modal
     var modal = document.getElementById('id01');
+
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
-    if (event.target == modal) {
-    modal.style.display = "none";
-    }
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
     }
 
 
@@ -107,11 +108,6 @@ head
         _pasteContents = CryptoJS.AES.decrypt(_pasteContents, _password).toString(CryptoJS.enc.Utf8);
         _pasteContentType = CryptoJS.AES.decrypt(_pasteContentType, _password).toString(CryptoJS.enc.Utf8);
       }
-
-      console.log("Paste Name: " + _pasteName);
-      console.log("Paste Description: " + _pasteDescription);
-      console.log("Paste Content: " + _pasteContents);
-      console.log("Paste Type: " + _pasteContentType);
 
       DisplayEditor(_pasteName, _pasteDescription, _pasteContents, _pasteContentType);
 
@@ -153,7 +149,7 @@ head
 
       // If passworded, show password entry
       if(document.getElementById('startingPassworded').innerHTML == "1") {
-        document.getElementById("id01").style.display = "block";
+        document.getElementById("id01").style.display = "visible";
       }
 
       DecryptMessage();

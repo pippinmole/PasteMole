@@ -137,9 +137,6 @@ function OnPasswordInputChanged() {
 
   const value = $(".paste_passworded")[0].checked;
 
-  console.log("Passworded: " + value);
-
   // Enable/disable password box
   $(".paste_passwordGroup")[0].style.visibility = value ? "visible" : "hidden";
-
 }
