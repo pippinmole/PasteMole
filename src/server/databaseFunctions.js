@@ -3,6 +3,7 @@ const sqlite = require("sqlite3").verbose();
 const DATABASE_PATH = "codeBlocks.db";
 
 function OpenDatabase(callback) {
+  console.log(__dirname + DATABASE_PATH);
   this.db = new sqlite.Database(DATABASE_PATH);
   callback(this.db);
   this.db.close();
