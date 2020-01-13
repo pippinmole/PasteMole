@@ -91,6 +91,8 @@ function SubmitCode() {
     codeType: _codeType
   };
 
+  console.log("Passworded: " + _passworded);
+
   const data = {
     pasteData: _pasteData,
     passworded: _passworded
