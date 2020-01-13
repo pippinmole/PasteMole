@@ -3,7 +3,14 @@ const sqlite = require("sqlite3").verbose();
 const DATABASE_PATH = "codeBlocks.db";
 
 function OpenDatabase(callback) {
-  this.db = new sqlite.Database(DATABASE_PATH);
+  this.db = new sqlite.Database(DATABASE_PATH, sqlite.OPEN_READWRITE | sqlite.OPEN_CREATE, (err) => {
+    if(!err){
+     console.log("Successfully created DB file: " + DATABASE_PATH);
+    } else {
+      console.log("Failed to create DB file: " + DATABASE_PATH + ". Error: " + err );
+    }
+  });
+
   callback(this.db);
   this.db.close();
 }
