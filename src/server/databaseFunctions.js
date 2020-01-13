@@ -43,8 +43,7 @@ module.exports = {
         $name: data.pasteName,
         $description: data.pasteDescription,
         $code: data.code,
-        $codeType: data.codeType,
-        $passworded: data.passworded
+        $codeType: data.codeType//, $passworded: data.passworded
       });
 
       db.run("COMMIT;");
