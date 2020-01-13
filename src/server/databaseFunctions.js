@@ -1,7 +1,7 @@
 const sqlite = require("sqlite3").verbose();
 const path = require('path')
 
-const DATABASE_PATH = "/databases/codeBlocks.db";
+const DATABASE_PATH = "databases/codeBlocks.db";
 
 function OpenDatabase(callback) {
   const db = new sqlite.Database(path.resolve(__dirname, DATABASE_PATH), sqlite.OPEN_READWRITE | sqlite.OPEN_CREATE, (err) => {
