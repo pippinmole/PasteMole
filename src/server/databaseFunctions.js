@@ -39,8 +39,7 @@ module.exports = {
   //
   WriteToDatabase: function(data) {
 
-    const sql_entry = "INSERT INTO codeBlocks (url, name, description, code, codeType, passworded) VALUES ($url, $name, $description, $code, $codeType)";
-    //const sql_entry = "INSERT INTO codeBlocks (url, name, description, code, codeType, passworded) VALUES ($url, $name, $description, $code, $codeType, $passworded)";
+    const sql_entry = "INSERT INTO codeBlocks (url, name, description, code, codeType, passworded) VALUES ($url, $name, $description, $code, $codeType, $passworded)";
 
     OpenDatabase((db) => {
 
@@ -59,8 +58,8 @@ module.exports = {
   },
   // Creates the database
   CreateDatabase: function() {
-    //const sql_entry = "CREATE TABLE IF NOT EXISTS codeBlocks (url TEXT PRIMARY KEY, name TEXT, description TEXT, code TEXT, codeType TEXT, passworded BOOLEAN)";
-    const sql_entry = "CREATE TABLE IF NOT EXISTS codeBlocks (url TEXT PRIMARY KEY, name TEXT, description TEXT, code TEXT, codeType TEXT)";
+    
+    const sql_entry = "CREATE TABLE IF NOT EXISTS codeBlocks (url TEXT PRIMARY KEY, name TEXT, description TEXT, code TEXT, codeType TEXT, passworded BOOLEAN)";
 
     OpenDatabase((db) => {
 
