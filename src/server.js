@@ -76,7 +76,7 @@ app.get("/p/:id", (request, response) => {
         pasteDescription: paste.description,
         pasteContents: paste.code,
         pasteType: paste.codeType,
-        passworded: paste.passworded
+        pastePassworded: paste.passworded
       }
 
       // Send the response back to the client
