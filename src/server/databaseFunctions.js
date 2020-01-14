@@ -51,7 +51,7 @@ module.exports = {
         $description: data.pasteDescription,
         $code: data.code,
         $codeType: data.codeType,
-        $passworded: data.passworded
+        $passworded: data.passworded == "0" ? false : true
       });
 
       db.run("COMMIT;");
