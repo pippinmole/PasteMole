@@ -71,7 +71,6 @@ app.get("/p/:id", (request, response) => {
       const paste = rows[0];
 
       console.log(paste);
-      console.log(JSON.stringify(paste));
 
       // Send to code template (with paste object)
       const _render = {

@@ -39,7 +39,23 @@ module.exports = {
   //
   WriteToDatabase: function(data) {
 
-    const sql_entry = "INSERT INTO codeBlocks (url, name, description, code, codeType, passworded) VALUES ($url, $name, $description, $code, $codeType, $passworded)";
+    // Get current time/date
+    const date = new Date();
+
+    const day = date.getDate();
+    const month = date.getMonth();
+    const year = date.getYear();
+
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+    const second = date.getSeconds();
+
+    const time = `${hour} : ${minute} : ${second}`;
+    const date = `${day} : ${month} : ${year}`;
+
+    const dateTime = `(${time}) : (${date})`;
+
+    const sql_entry = "INSERT INTO codeBlocks (url, name, description, code, codeType, passworded, dateCreated) VALUES ($url, $name, $description, $code, $codeType, $passworded, $dateCreated)";
 
     OpenDatabase((db) => {
 
@@ -51,7 +67,8 @@ module.exports = {
         $description: data.pasteDescription,
         $code: data.code,
         $codeType: data.codeType,
-        $passworded: data.passworded
+        $passworded: data.passworded,
+        $dateCreated: dateTime
       });
 
       db.run("COMMIT;");
@@ -60,7 +77,7 @@ module.exports = {
   // Creates the database
   CreateDatabase: function() {
 
-    const sql_entry = "CREATE TABLE IF NOT EXISTS codeBlocks (url TEXT PRIMARY KEY, name TEXT, description TEXT, code TEXT, codeType TEXT, passworded BOOLEAN)";
+    const sql_entry = "CREATE TABLE IF NOT EXISTS codeBlocks (url TEXT PRIMARY KEY, name TEXT, description TEXT, code TEXT, codeType TEXT, passworded BOOLEAN, dateCreated TEXT)";
 
     OpenDatabase((db) => {
 
