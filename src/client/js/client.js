@@ -39,18 +39,9 @@ function SubmitCode() {
   const _pasteDescription = $(".paste_description").val();
   const _code = editor.getValue();
   const _codeType = $(".codeTypeSelector").val();
-  const _passworded = $(".paste_passworded")[0].checked;
   const _password = $(".paste_passwordfield").val();
 
-  if(_passworded && _password == "") {
-    const errorMessage = "You should enter a password, or uncheck 'Passworded'!";
-
-    console.log(errorMessage);
-    $("#error_message").html(errorMessage);
-    return;
-  } else {
-    $("#error_message").html("");
-  }
+  const _passworded = _password != "";
 
   // Clean content of the codePastingArea
   if(_code == undefined || _code == "") {
@@ -130,13 +121,4 @@ function OnCodeTypeSelectorChanged() {
   editor.session.setMode("ace/mode/" + value);
 
   console.log("ace/mode/" + value);
-}
-
-
-function OnPasswordInputChanged() {
-
-  const value = $(".paste_passworded")[0].checked;
-
-  // Enable/disable password box
-  $(".paste_passwordGroup")[0].style.visibility = value ? "visible" : "hidden";
 }

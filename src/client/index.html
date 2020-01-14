@@ -18,7 +18,7 @@
 
       <h1 id="title_main">
         <span id="title_main_top">PasteMole <br /></span>
-        <span id="">An online code-pasting service</span>
+        <span id="">An online encrypted code-pasting service</span>
       </h1>
 
       <div class="textContainer_center">
@@ -35,6 +35,9 @@
         <p>
           Paste your code in the text field, change the paste properties, and then hit '<span style="font-weight: bold">Submit</span>'.
         </p>
+        <p>
+          <span style="color:red;font-weight: bold;font-style:italic;">NOTE:</span> You can enable the <span style="font-weight: bold">'Passworded'</span> option in Paste Settings in order for your paste (and paste meta) to be encrypted from client-to-client (meaning the server does not see any plain-text content).
+        </p>
 
         <!--
         Main code pasting goes here
@@ -46,19 +49,13 @@
 
         <!--<button class="submitCode_button" onclick="Highlight()"> Highlight </button>-->
 
-        <div id="editor" class="codePastingArea"></div>
-
         <h3 style="text-align: center;">
           Paste Settings
         </h3>
 
         Paste Name: <input type="text" class="paste_name" />
         Paste Description: <input type="text" class="paste_description" />
-        Passworded: <input type="checkbox" class="paste_passworded" onchange="OnPasswordInputChanged()" />
-
-        <div class="paste_passwordGroup">
-          Paste Password: <input type="text" class="paste_passwordfield" />
-        </div>
+        Paste Password: <input type="text" class="paste_passwordfield" />
 
         <div id="codeSelect">
           Code Type: <select class="codeTypeSelector" onchange="OnCodeTypeSelectorChanged()">
@@ -167,6 +164,8 @@
 
           </select>
         </div>
+
+        <div id="editor" class="codePastingArea"></div>
 
       </div>
 

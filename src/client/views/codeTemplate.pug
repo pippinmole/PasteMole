@@ -152,10 +152,11 @@ head
       console.log($("#startingPassworded")[0].innerHTML);
 
       if($("#startingPassworded")[0].innerHTML == "1") {
-        console.log("Set $(#startingPassworded)[0].innerHTML to block");
+        // Display password prompt
         document.getElementById('id01').style.display = "block";
       } else {
-        DecryptMessage();  
+        // Just show the message lol
+        DecryptMessage();
       }
 
       editor.setOptions({
