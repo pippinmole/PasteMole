@@ -43,17 +43,17 @@ module.exports = {
     const date = new Date();
 
     const day = date.getDate();
-    const month = date.getMonth();
-    const year = date.getYear();
+    const month = date.getMonth() + 1; // Month is indexed at 0 for some reason
+    const year = date.getFullYear();
 
     const hour = date.getHours();
     const minute = date.getMinutes();
     const second = date.getSeconds();
 
-    const hourminutesecond = `${hour} : ${minute} : ${second}`;
-    const daymonthyear = `${day} : ${month} : ${year}`;
+    const hourminutesecond = `${hour}:${minute}:${second}`;
+    const daymonthyear = `${day}:${month}:${year}`;
 
-    const dateTime = `(${hourminutesecond}) : (${daymonthyear})`;
+    const dateTime = `(${hourminutesecond}):(${daymonthyear})`;
 
     const sql_entry = "INSERT INTO codeBlocks (url, name, description, code, codeType, passworded, dateCreated) VALUES ($url, $name, $description, $code, $codeType, $passworded, $dateCreated)";
 
