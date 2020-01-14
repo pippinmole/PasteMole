@@ -50,10 +50,10 @@ module.exports = {
     const minute = date.getMinutes();
     const second = date.getSeconds();
 
-    const time = `${hour} : ${minute} : ${second}`;
-    const date = `${day} : ${month} : ${year}`;
+    const hourminutesecond = `${hour} : ${minute} : ${second}`;
+    const daymonthyear = `${day} : ${month} : ${year}`;
 
-    const dateTime = `(${time}) : (${date})`;
+    const dateTime = `(${hourminutesecond}) : (${daymonthyear})`;
 
     const sql_entry = "INSERT INTO codeBlocks (url, name, description, code, codeType, passworded, dateCreated) VALUES ($url, $name, $description, $code, $codeType, $passworded, $dateCreated)";
 
