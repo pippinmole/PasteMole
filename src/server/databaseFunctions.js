@@ -51,9 +51,9 @@ module.exports = {
     const second = date.getSeconds();
 
     const hourminutesecond = `${hour}:${minute}:${second}`;
-    const daymonthyear = `${day}:${month}:${year}`;
+    const daymonthyear = `${day}/${month}/${year}`;
 
-    const dateTime = `(${hourminutesecond}):(${daymonthyear})`;
+    const dateTime = `${daymonthyear} ${hourminutesecond}`;
 
     const sql_entry = "INSERT INTO codeBlocks (url, name, description, code, codeType, passworded, dateCreated) VALUES ($url, $name, $description, $code, $codeType, $passworded, $dateCreated)";
 
