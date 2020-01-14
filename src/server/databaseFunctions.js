@@ -50,7 +50,8 @@ module.exports = {
         $name: data.pasteName,
         $description: data.pasteDescription,
         $code: data.code,
-        $codeType: data.codeType//, $passworded: data.passworded
+        $codeType: data.codeType,
+        $passworded: data.passworded
       });
 
       db.run("COMMIT;");
@@ -58,7 +59,7 @@ module.exports = {
   },
   // Creates the database
   CreateDatabase: function() {
-    
+
     const sql_entry = "CREATE TABLE IF NOT EXISTS codeBlocks (url TEXT PRIMARY KEY, name TEXT, description TEXT, code TEXT, codeType TEXT, passworded BOOLEAN)";
 
     OpenDatabase((db) => {
